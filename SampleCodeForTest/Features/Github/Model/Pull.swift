@@ -14,7 +14,6 @@ struct Pull: Codable {
     var title: String
     var user: User?
     var body: String
-    var created_at: Date
     
     enum CodingKeys: CodingKey {
         case id
@@ -23,7 +22,6 @@ struct Pull: Codable {
         case title
         case user
         case body
-        case created_at
     }
     
     init(from decoder: Decoder) throws {
@@ -34,16 +32,27 @@ struct Pull: Codable {
         state = AppState(rawValue: stateData)
         title = try values.decodeIfPresent(String.self, forKey: .title) ?? ""
         user = try values.decodeIfPresent(User.self, forKey: .user)
-        body = try values.decodeIfPresent(String.self, forKey: .body) ?? ""
-        let dataSring = try values.decodeIfPresent(String.self, forKey: .created_at) ?? ""
-        created_at = Date()
+        body = try values.decodeIfPresent(String.self, forKey: .body) ?? "" 
     }
 }
 
-struct User: Codable, Identifiable {
+struct User: Codable {
     var id: Int
     var login: String
     var avatar_url: String
+    
+    enum CodingKeys: CodingKey {
+        case id
+        case login
+        case avatar_url
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(Int.self, forKey: .id)
+        login = try values.decodeIfPresent(String.self, forKey: .login) ?? ""
+        avatar_url = try values.decodeIfPresent(String.self, forKey: .avatar_url) ?? ""
+    }
 }
 
 

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2DB7E64D25F32C7100A8C8EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7E64C25F32C7100A8C8EE /* AppDelegate.swift */; };
 		2DB7E64F25F32C7100A8C8EE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7E64E25F32C7100A8C8EE /* SceneDelegate.swift */; };
-		2DB7E65125F32C7100A8C8EE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7E65025F32C7100A8C8EE /* ContentView.swift */; };
 		2DB7E65325F32C7200A8C8EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB7E65225F32C7200A8C8EE /* Assets.xcassets */; };
 		2DB7E65625F32C7200A8C8EE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB7E65525F32C7200A8C8EE /* Preview Assets.xcassets */; };
 		2DB7E65925F32C7200A8C8EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DB7E65725F32C7200A8C8EE /* LaunchScreen.storyboard */; };
@@ -22,13 +21,18 @@
 		2DB7E69625F3329E00A8C8EE /* PullService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7E69525F3329E00A8C8EE /* PullService.swift */; };
 		2DB7E69925F3331700A8C8EE /* Pull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7E69825F3331700A8C8EE /* Pull.swift */; };
 		2DB7E69E25F33B7000A8C8EE /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7E69D25F33B7000A8C8EE /* DateUtilities.swift */; };
+		2DB7E6A225F33C7E00A8C8EE /* PullsSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7E6A125F33C7E00A8C8EE /* PullsSwiftUIView.swift */; };
+		2DB7E6A525F33C8C00A8C8EE /* PullsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7E6A425F33C8C00A8C8EE /* PullsViewModel.swift */; };
+		2DB7E6B025F344FE00A8C8EE /* EnvironmentValues+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7E6AC25F344FE00A8C8EE /* EnvironmentValues+ImageCache.swift */; };
+		2DB7E6B125F344FE00A8C8EE /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7E6AD25F344FE00A8C8EE /* ImageCache.swift */; };
+		2DB7E6B225F344FE00A8C8EE /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7E6AE25F344FE00A8C8EE /* AsyncImage.swift */; };
+		2DB7E6B325F344FE00A8C8EE /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7E6AF25F344FE00A8C8EE /* ImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2DB7E64925F32C7100A8C8EE /* SampleCodeForTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleCodeForTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB7E64C25F32C7100A8C8EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DB7E64E25F32C7100A8C8EE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2DB7E65025F32C7100A8C8EE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2DB7E65225F32C7200A8C8EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DB7E65525F32C7200A8C8EE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2DB7E65825F32C7200A8C8EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -42,6 +46,12 @@
 		2DB7E69525F3329E00A8C8EE /* PullService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullService.swift; sourceTree = "<group>"; };
 		2DB7E69825F3331700A8C8EE /* Pull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pull.swift; sourceTree = "<group>"; };
 		2DB7E69D25F33B7000A8C8EE /* DateUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
+		2DB7E6A125F33C7E00A8C8EE /* PullsSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullsSwiftUIView.swift; sourceTree = "<group>"; };
+		2DB7E6A425F33C8C00A8C8EE /* PullsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullsViewModel.swift; sourceTree = "<group>"; };
+		2DB7E6AC25F344FE00A8C8EE /* EnvironmentValues+ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+ImageCache.swift"; sourceTree = "<group>"; };
+		2DB7E6AD25F344FE00A8C8EE /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		2DB7E6AE25F344FE00A8C8EE /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
+		2DB7E6AF25F344FE00A8C8EE /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +126,7 @@
 		2DB7E66C25F32E1400A8C8EE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				2DB7E6AB25F344D400A8C8EE /* AsyncImage */,
 				2DB7E69225F3328300A8C8EE /* URLS.swift */,
 				2DB7E67125F32E2300A8C8EE /* EndPoint.swift */,
 				2DB7E69525F3329E00A8C8EE /* PullService.swift */,
@@ -129,7 +140,6 @@
 				2DB7E65725F32C7200A8C8EE /* LaunchScreen.storyboard */,
 				2DB7E64C25F32C7100A8C8EE /* AppDelegate.swift */,
 				2DB7E64E25F32C7100A8C8EE /* SceneDelegate.swift */,
-				2DB7E65025F32C7100A8C8EE /* ContentView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -163,6 +173,7 @@
 		2DB7E68E25F3305000A8C8EE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2DB7E6A125F33C7E00A8C8EE /* PullsSwiftUIView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -170,6 +181,7 @@
 		2DB7E68F25F3305600A8C8EE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				2DB7E6A425F33C8C00A8C8EE /* PullsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -180,6 +192,17 @@
 				2DB7E69D25F33B7000A8C8EE /* DateUtilities.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		2DB7E6AB25F344D400A8C8EE /* AsyncImage */ = {
+			isa = PBXGroup;
+			children = (
+				2DB7E6AE25F344FE00A8C8EE /* AsyncImage.swift */,
+				2DB7E6AC25F344FE00A8C8EE /* EnvironmentValues+ImageCache.swift */,
+				2DB7E6AD25F344FE00A8C8EE /* ImageCache.swift */,
+				2DB7E6AF25F344FE00A8C8EE /* ImageLoader.swift */,
+			);
+			path = AsyncImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,15 +275,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DB7E6B125F344FE00A8C8EE /* ImageCache.swift in Sources */,
 				2DB7E66825F32D8500A8C8EE /* RequestBuilder.swift in Sources */,
 				2DB7E64D25F32C7100A8C8EE /* AppDelegate.swift in Sources */,
+				2DB7E6B025F344FE00A8C8EE /* EnvironmentValues+ImageCache.swift in Sources */,
 				2DB7E64F25F32C7100A8C8EE /* SceneDelegate.swift in Sources */,
+				2DB7E6A525F33C8C00A8C8EE /* PullsViewModel.swift in Sources */,
 				2DB7E66725F32D8500A8C8EE /* APIService.swift in Sources */,
 				2DB7E67B25F32E2300A8C8EE /* EndPoint.swift in Sources */,
 				2DB7E69325F3328300A8C8EE /* URLS.swift in Sources */,
-				2DB7E65125F32C7100A8C8EE /* ContentView.swift in Sources */,
 				2DB7E66925F32D8500A8C8EE /* APISession.swift in Sources */,
 				2DB7E66A25F32D8500A8C8EE /* APIError.swift in Sources */,
+				2DB7E6B325F344FE00A8C8EE /* ImageLoader.swift in Sources */,
+				2DB7E6A225F33C7E00A8C8EE /* PullsSwiftUIView.swift in Sources */,
+				2DB7E6B225F344FE00A8C8EE /* AsyncImage.swift in Sources */,
 				2DB7E69925F3331700A8C8EE /* Pull.swift in Sources */,
 				2DB7E69625F3329E00A8C8EE /* PullService.swift in Sources */,
 				2DB7E69E25F33B7000A8C8EE /* DateUtilities.swift in Sources */,
