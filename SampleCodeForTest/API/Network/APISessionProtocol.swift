@@ -1,14 +1,7 @@
-//
-//  APIService.swift
-//  honeybee-ios
-//
-//  Created by iOSVenture LLC on 3/5/21.
-//
-
 import Foundation
 import Combine
-import UIKit
 
-protocol APIService {
+protocol APISessionProtocol {
     func request<T: Decodable>(with builder: RequestBuilder) -> AnyPublisher<T, APIError>
+    func requestImage(with builder: RequestBuilder) -> AnyPublisher<Data, APIError>
 }

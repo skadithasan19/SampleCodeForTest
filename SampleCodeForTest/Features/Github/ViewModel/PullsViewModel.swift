@@ -8,31 +8,45 @@
 import Foundation
 import Combine
 
-class PullsViewModel: ObservableObject, PullService {
-    var apiSession: APIService
+class PullsViewModel: ObservableObject, PullService, Loadable {
     
-    @Published var pulls = [Pull]()
+    typealias Output = [Pull]
     
-    private var disposables = Set<AnyCancellable>()
+    typealias Factory = DependencyContainerProtocol
     
-    init(apiSession:APISession = APISession()) {
-        self.apiSession = apiSession
+    private let factory: Factory
+    
+    private(set) lazy var apiSession: APISessionProtocol = factory.apiSession
+    
+    private var cancellables = Set<AnyCancellable?>()
+    
+    @Published var state: LoadingState<[Pull]> = .idle
+    
+    init(factory: Factory) {
+        self.factory = factory
         self.loadPulls()
     }
     
+    convenience init(apiSession: APISessionProtocol = APISession()) { // For Unit Testing
+        self.init(factory: DependencyContainer())
+        self.apiSession = apiSession
+    }
+    
     func loadPulls() {
-        disposables.insert(self.getPulls()
-                            .receive(on: DispatchQueue.main)
-                            .sink(receiveCompletion: { (result) in
-                                switch result {
-                                case .failure(let error):
-                                    print(error.localizedDescription)
-                                    break
-                                case .finished:
-                                    break
-                                }
-                            }, receiveValue: { (pulls) in
-                                self.pulls = pulls.filter({ $0.state == AppState.open })
-                            }))
+        self.state = .loading
+        cancellables.insert(self.getPulls()
+                                .receive(on: DispatchQueue.main)
+                                .sink(receiveCompletion: { (result) in
+                                    switch result {
+                                    case .failure(let error):
+                                        print(error.localizedDescription)
+                                        self.state = .failed(error)
+                                        break
+                                    case .finished:
+                                        break
+                                    }
+                                }, receiveValue: { (pulls) in
+                                    self.state = .loaded(pulls)
+                                }))
     }
 }

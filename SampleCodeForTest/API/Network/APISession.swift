@@ -1,38 +1,67 @@
-//
-//  APISession.swift
-//  honeybee-ios
-//
-//  Created by iOSVenture LLC on 3/5/21.
-//
-
 import Foundation
 import Combine
-import UIKit
 
-struct APISession: APIService {
+protocol URLSessionProtocol {
+    func dataTaskPublisher(for: URLRequest) -> URLSession.DataTaskPublisher
+}
+
+extension URLSession: URLSessionProtocol {}
+
+struct APISession: APISessionProtocol {
+    private let session: URLSessionProtocol
+
+    init(session: URLSessionProtocol = URLSession.shared) {
+        self.session = session
+    }
     
     func request<T>(with builder: RequestBuilder) -> AnyPublisher<T, APIError> where T: Decodable {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        print(builder.urlRequest.url?.absoluteURL as Any)
-        return URLSession.shared
-            .dataTaskPublisher(for: builder.urlRequest)
-            .receive(on: DispatchQueue.main)
-            .mapError { err in .unknown }
-            .flatMap { data, response -> AnyPublisher<T, APIError> in
-                if let response = response as? HTTPURLResponse {
-                    if (200...299).contains(response.statusCode) {
-                        return Just(data)
-                            .decode(type: T.self, decoder: decoder)
-                            .mapError { err in
-                                .decodingError(err.localizedDescription)
-                            }.eraseToAnyPublisher()
-                    } else {
-                        return Fail(error: APIError.httpError(response.statusCode)).eraseToAnyPublisher()
-                    }
+        session.dataTaskPublisher(for: builder.urlRequest)
+            .tryMap { result in
+                let decoder = JSONDecoder()
+                guard let urlResponse = result.response as? HTTPURLResponse else { throw APIError.unknown }
+                if !(200...299).contains(urlResponse.statusCode)  {
+                    throw APIError.httpError(urlResponse.statusCode)
+                } else {
+                    return try decoder.decode(T.self, from: result.data)
                 }
-                return Fail(error: APIError.unknown).eraseToAnyPublisher()
             }
+            .mapError { error in
+                print(error)
+                switch error {
+                case let apiError as APIError:
+                    return apiError
+                default:
+                    return APIError.unknown
+                }
+            }
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+    
+    func requestImage(with builder: RequestBuilder) -> AnyPublisher<Data, APIError> {
+        session.dataTaskPublisher(for: builder.urlRequest)
+            .tryMap { data, response in
+                guard let response = response as? HTTPURLResponse else { throw APIError.unknown }
+                if response.statusCode == 200 {
+                    return data
+                } else {
+                    throw APIError.httpError(response.statusCode)
+                }
+            }
+            .mapError { error in
+                switch error {
+                case let apiError as APIError:
+                    return apiError
+                default:
+                    return APIError.unknown
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+}
+
+///Wrapper type used by the APISession to Box the given RequestBuilder
+struct RefreshBuilder: RequestBuilder {
+    var urlRequest: URLRequest
 }

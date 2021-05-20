@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol PullService {
-    var apiSession: APIService { get }
+    var apiSession: APISessionProtocol { get }
     func getPulls() -> AnyPublisher<[Pull], APIError>
 }
 
