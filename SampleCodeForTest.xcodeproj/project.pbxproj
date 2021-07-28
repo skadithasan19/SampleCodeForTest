@@ -261,21 +261,21 @@
 		2DD026B126570F8D0082AF92 /* SampleCodeForTestTests */ = {
 			isa = PBXGroup;
 			children = (
-				2DD026BA26570F9F0082AF92 /* APILayer */,
+				2DD026BA26570F9F0082AF92 /* Mock */,
 				2DD026B226570F8D0082AF92 /* SampleCodeForTestTests.swift */,
 				2DD026B426570F8D0082AF92 /* Info.plist */,
 			);
 			path = SampleCodeForTestTests;
 			sourceTree = "<group>";
 		};
-		2DD026BA26570F9F0082AF92 /* APILayer */ = {
+		2DD026BA26570F9F0082AF92 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
 				2DD026BD26570FAC0082AF92 /* MockAPISession.swift */,
 				2DD026BC26570FAC0082AF92 /* MockURLSession.swift */,
 				2DD026BB26570FAC0082AF92 /* SampleResponse.json */,
 			);
-			path = APILayer;
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
