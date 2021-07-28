@@ -8,18 +8,7 @@
 import SwiftUI
 
 struct PullsSwiftUIView: View {
-    
-    typealias Factory = DependencyContainerProtocol
-
-    private let container: Factory
-    
-    @ObservedObject var pullViewModel: PullsViewModel
-    
-    init(container: Factory) {
-        self.container = container
-        self.pullViewModel = container.makeViewModel()
-    }
-    
+    @ObservedObject var pullViewModel = PullsViewModel()
     var body: some View {
         NavigationView {
             AsyncLoadableView(source: pullViewModel) { pulls in
@@ -66,6 +55,6 @@ struct CellView:View {
 
 struct PullsSwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        PullsSwiftUIView(container: DependencyContainer())
+        PullsSwiftUIView()
     }
 }

@@ -9,27 +9,19 @@ import Foundation
 import Combine
 
 class PullsViewModel: ObservableObject, PullService, Loadable {
+    var apiSession: APISessionProtocol
     
     typealias Output = [Pull]
     
     typealias Factory = DependencyContainerProtocol
     
-    private let factory: Factory
-    
-    private(set) lazy var apiSession: APISessionProtocol = factory.apiSession
-    
     private var cancellables = Set<AnyCancellable?>()
     
     @Published var state: LoadingState<[Pull]> = .idle
     
-    init(factory: Factory) {
-        self.factory = factory
-        self.loadPulls()
-    }
-    
-    convenience init(apiSession: APISessionProtocol = APISession()) { // For Unit Testing
-        self.init(factory: DependencyContainer())
+    init(apiSession: APISessionProtocol = APISession()) {
         self.apiSession = apiSession
+        self.loadPulls()
     }
     
     func loadPulls() {

@@ -5,33 +5,39 @@
 //  Created by Adit Hasan on 5/20/21.
 //
 
-import Combine
 import Foundation
 @testable import SampleCodeForTest
 
-struct MockApiSession<Output: Decodable, Failure: Error>: APISessionProtocol {
+class MockURLSession: URLSession {
 
-    class Stub {
-        var expectedResult: Result<Output?, APIError> = .success(nil)
-        var expectedReturnData: Data!
-        var expectedURLRequest: URLRequest!
+    var data: Data?
+    var response: URLResponse?
+    var error: Error?
+
+    init(data: Data?, response: URLResponse?, error: Error?) {
+        self.data = data
+        self.response = response
+        self.error = error
     }
 
-    var stub = Stub()
-
-    func request<T>(with builder: RequestBuilder) -> AnyPublisher<T, APIError> where T : Decodable {
-        stub.expectedURLRequest = builder.urlRequest
-        if case .success = stub.expectedResult {
-            let result = try! JSONDecoder().decode(Output.self, from: stub.expectedReturnData)
-            return Result.Publisher(result as! T).eraseToAnyPublisher()
-        } else if case .failure(let error) = stub.expectedResult {
-            return Result.Publisher(error).eraseToAnyPublisher()
-        } else {
-            fatalError("Bad test data")
+    override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+        let data = self.data
+        let response = self.response
+        let error = self.error
+        return MockURLSessionDataTask {
+            completionHandler(data, response, error)
         }
     }
+}
 
-    func requestImage(with builder: RequestBuilder) -> AnyPublisher<Data, APIError> {
-        Result.Publisher(.failure(APIError.unknown)).eraseToAnyPublisher()
+class MockURLSessionDataTask: URLSessionDataTask {
+    private let closure: () -> Void
+
+    init(closure: @escaping () -> Void) {
+        self.closure = closure
+    }
+
+    override func resume() {
+        closure()
     }
 }

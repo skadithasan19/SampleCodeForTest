@@ -12,18 +12,18 @@ protocol DependencyContainerProtocol: ViewModelFactory {
     func makeAPISession() -> APISessionProtocol
 }
 
-class DependencyContainer: DependencyContainerProtocol {
-    private(set) lazy var apiSession: APISessionProtocol = makeAPISession()
-    func makeAPISession() -> APISessionProtocol {
-        APISession()
-    }
-}
+//class DependencyContainer: DependencyContainerProtocol {
+//    private(set) lazy var apiSession: APISessionProtocol = makeAPISession()
+//    func makeAPISession() -> APISessionProtocol {
+//        APISession()
+//    }
+//}
 
-extension DependencyContainer: ViewModelFactory {
-    func makeViewModel() -> PullsViewModel {
-        PullsViewModel(factory: self)
-    }
-    func combine<A, B>(value: A, with closure: @escaping(A) -> B) -> () -> B {
-        return { closure(value) }
-    }
-}
+//extension DependencyContainer: ViewModelFactory {
+//    func makeViewModel() -> PullsViewModel {
+//        PullsViewModel(factory: self)
+//    }
+//    func combine<A, B>(value: A, with closure: @escaping(A) -> B) -> () -> B {
+//        return { closure(value) }
+//    }
+//}
