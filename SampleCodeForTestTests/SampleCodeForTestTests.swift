@@ -11,23 +11,11 @@ import XCTest
 
 class SampleCodeForTestUITests: XCTestCase {
     
-    var sut: PullsViewModel!
-    var mockApiSession: MockApiSession<[Pull], APIError>!
-    
-    override func setUpWithError() throws {
+    func test_loadingState_is_loaded_when_apiData_successfullly_decoded_from_GithubAPI() {
+        
         let mockSession = MockApiSession<[Pull], APIError>()
         mockSession.stub.expectedReturnData = getMockJSON()
-        mockApiSession = mockSession
-        sut = PullsViewModel(apiSession: self.mockApiSession)
-    }
-    
-    override func tearDownWithError() throws {
-        sut = nil
-        mockApiSession = nil
-    }
-    
-    func test_loadingState_is_loaded_when_apiData_successfullly_decoded_from_GithubAPI() {
-        sut = PullsViewModel(apiSession: mockApiSession)
+        let sut = PullsViewModel(apiSession: mockSession)
         sut.loadPulls()
         
         let exp = expectation(description: "Test after 5 seconds")
