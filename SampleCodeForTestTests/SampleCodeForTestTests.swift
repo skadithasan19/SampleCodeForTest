@@ -15,11 +15,10 @@ class SampleCodeForTestUITests: XCTestCase {
     var mockApiSession: MockApiSession<[Pull], APIError>!
     
     override func setUpWithError() throws {
-        self.mockApiSession = MockApiSession()
-        sut = PullsViewModel(apiSession: self.mockApiSession)
         let mockSession = MockApiSession<[Pull], APIError>()
         mockSession.stub.expectedReturnData = getMockJSON()
         mockApiSession = mockSession
+        sut = PullsViewModel(apiSession: self.mockApiSession)
     }
     
     override func tearDownWithError() throws {
